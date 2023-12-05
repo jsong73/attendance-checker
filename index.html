@@ -12,10 +12,17 @@
 
     <label> Upload your attendance list in .jpg or .png format below:</label>
 
-    <input type="file" id="imageUpload">
+    <input type="file" id="attendanceImageUpload">
+
+    
+    <label> Upload Zoom participants list in .jpg or .png format below:</label>
+    <input type="file" id="zoomImageUpload">
+
 
 
     <button id="attendance-button" onclick="checkAttendanceListImage()">Check Attendance</button>
+    <button id="zoom-button" onclick="checkZoomListImage()">Check Zoom List</button>
+    
     <div id="result"></div>
     </div>
     <script src='https://unpkg.com/tesseract.js@v2.1.0/dist/tesseract.min.js'></script>

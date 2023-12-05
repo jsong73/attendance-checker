@@ -1,5 +1,5 @@
 function checkAttendanceListImage() {
-    const attendanceListImage = document.getElementById('imageUpload');
+    const attendanceListImage = document.getElementById('attendanceImageUpload');
     const result = document.getElementById('result');
 
     if (attendanceListImage.files.length > 0) {
@@ -26,9 +26,47 @@ function checkAttendanceListImage() {
             }).filter(name => name);
             console.log("last names:", lastNames)
     
-            result.innerText = lastNames.join(', ');
+            result.innerText = `Last Names from Attendance List: ${lastNames.join(', ')}`;
         });
     } else {
         alert("Uploaded image is required");
     }
+}
+
+function checkZoomListImage() {
+    const zoomImageUpload = document.getElementById("zoomImageUpload");
+    const result = document.getElementById("result");
+
+    if (zoomImageUpload.files.length > 0) {
+        const zoomImages = Array.from(zoomImageUpload.files);
+
+        zoomImages.forEach((zoomImage, index) => {
+            const imageUrl = URL.createObjectURL(zoomImage);
+
+            Tesseract.recognize(
+                imageUrl,
+                'eng',
+                { logger: m => console.log(m) }
+            ).then(({ data: { text } }) => {
+                console.log(text);
+
+                const seperatedNames = text.split('\n');
+     
+                const lastNames = seperatedNames.map(names => {
+                    const filteredNames = names.split(/[,.]\s*/);
+
+                    return filteredNames[0].trim(); 
+            
+                }).filter(name => name);
+                console.log("last names:", lastNames)
+
+                result.innerText = `Last Names from Zoom List: ${lastNames.join(', ')}`;
+        
+            });
+        });
+    } else {
+        alert("Uploaded image are required");
+    }
+
+
 }
