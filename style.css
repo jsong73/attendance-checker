@@ -1,20 +1,23 @@
 body, html {
     margin: 0;
     padding: 0;
+    height: 100%;
 }
 
 body {
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 100vh;
+}
+
+.page-container {
+    text-align: center;
 }
 
 #imageUpload {
-    width: 100%;
-    padding-bottom: 40px;
-    padding-top: 40px;
-    align-items: center;
-    justify-content: center;
+    text-align: center;
+    display: flex;
+    padding-top: 30px;
+    padding-bottom: 30px;
 }
 
