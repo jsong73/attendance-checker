@@ -1,3 +1,6 @@
+let attendanceLastNames = [];
+let zoomLastNames = [];
+
 function checkAttendanceListImage() {
     const attendanceListImage = document.getElementById('attendanceImageUpload');
     const result = document.getElementById('result');
@@ -24,6 +27,8 @@ function checkAttendanceListImage() {
                 return filteredNames[0].trim(); 
             // removes empty strings from lastNames array
             }).filter(name => name);
+
+            attendanceLastNames = lastNames;
             console.log("last names:", lastNames)
     
             result.innerText = `Last Names from Attendance List: ${lastNames.join(', ')}`;
@@ -52,12 +57,21 @@ function checkZoomListImage() {
 
                 const seperatedNames = text.split('\n');
      
-                const lastNames = seperatedNames.map(names => {
-                    const filteredNames = names.split(/[,.]\s*/);
+        
+                const lastNames = seperatedNames.map(name => {
+                    const filteredNames = name.split(/[,.]\s*/);
+                    const lastName = filteredNames[0].trim();
 
-                    return filteredNames[0].trim(); 
-            
+                    //removing TA's and instructors from array
+                    const excludedNames = ["Chad Hinds(TA)", "Jessca Song(14)", "Andy --TA", "Junghoon Yoon"];
+                    if (!excludedNames.includes(lastName)) {
+                        return lastName;
+                    }
+                    return null;
                 }).filter(name => name);
+
+                attendanceLastNames = lastNames;
+
                 console.log("last names:", lastNames)
 
                 result.innerText = `Last Names from Zoom List: ${lastNames.join(', ')}`;
@@ -70,3 +84,5 @@ function checkZoomListImage() {
 
 
 }
+
+
