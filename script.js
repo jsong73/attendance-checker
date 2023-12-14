@@ -31,7 +31,7 @@ function checkAttendanceListImage() {
             attendanceLastNames = lastNames;
             console.log("last names:", lastNames)
     
-            result.innerText = `Last Names from Attendance List: ${lastNames.join(', ')}`;
+            result.innerText = `\n\nLast Names from Attendance List: ${lastNames.join(', ')}`;
         });
     } else {
         alert("Uploaded image is required");
@@ -70,19 +70,42 @@ function checkZoomListImage() {
                     return null;
                 }).filter(name => name);
 
-                attendanceLastNames = lastNames;
+                zoomLastNames = lastNames;
 
                 console.log("last names:", lastNames)
 
-                result.innerText = `Last Names from Zoom List: ${lastNames.join(', ')}`;
-        
+                result.innerText += `\n\nLast Names from Zoom List: ${lastNames.join(', ')}`;
             });
         });
     } else {
         alert("Uploaded image are required");
     }
 
-
 }
 
 
+function compareAttendanceAndZoom() {
+    const result = document.getElementById('result');
+    console.log('Attendance Last Names:', attendanceLastNames);
+    console.log('Zoom Last Names:', zoomLastNames);
+
+    if (attendanceLastNames.length === 0 || zoomLastNames.length === 0) {
+        alert('Please upload both attendance and Zoom lists before comparing.');
+        return;
+    }
+
+    //toLowerCase 
+    const lowerCaseAttendanceLastNames = attendanceLastNames.map((name) => name.toLowerCase());
+    const lowerCaseZoomLastNames = zoomLastNames.map((name) => name.toLowerCase());
+
+    // Find absent students (present in attendance, not in Zoom)
+    const absentLastNames = lowerCaseAttendanceLastNames.filter(
+        (lastName) => !lowerCaseZoomLastNames.includes(lastName)
+    );
+
+    if (absentLastNames.length === 0) {
+        result.innerText += '\n\nAll students are present in the Zoom list.';
+    } else {
+        result.innerText += `\n\nAbsent Last Names: ${absentLastNames.join(', ')}`;
+    }
+}
