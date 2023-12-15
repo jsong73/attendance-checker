@@ -24,4 +24,5 @@ Attendance Checker is a tool designed to simplify attendance management using th
 
 ### Identify Absentees  
 • Absent students will be intelligently identified and displayed for quick reference. Abstent students referes to students who are not included in the Zoom participants list but are included in the attendance roster.  
-![chrome-capture-2023-11-15 (2)](https://github.com/jsong73/attendance-checker/assets/111620893/13d9c812-a58a-4f3e-b160-a2402723dc26)
+
+
