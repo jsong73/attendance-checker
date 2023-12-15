@@ -9,19 +9,19 @@
 <body>
     <div class="page-container">
     <h2>Attendance Checker</h2>
+    <h3>Upload all images in .jpg or .png format</h3>
 
-    <label> Upload your attendance list in .jpg or .png format below:</label>
-
+    <label> Upload your attendance list </label>
     <input type="file" id="attendanceImageUpload">
 
     
-    <label> Upload Zoom participants list in .jpg or .png format below:</label>
+    <label> Upload Zoom participants list</label>
     <input type="file" id="zoomImageUpload">
 
 
 
-    <button id="attendance-button" onclick="checkAttendanceListImage()">Check Attendance</button>
-    <button id="zoom-button" onclick="checkZoomListImage()">Check Zoom List</button>
+    <button id="attendance-button" onclick="checkAttendanceListImage()">Upload Attendance List</button>
+    <button id="zoom-button" onclick="checkZoomListImage()">Upload Zoom List</button>
     <button id="compare-button" onclick="compareAttendanceAndZoom()">Compare</button>
 
     <div id="result"></div>
